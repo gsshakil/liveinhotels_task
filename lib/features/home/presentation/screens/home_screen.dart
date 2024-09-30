@@ -31,7 +31,6 @@ class HomeScreen extends StatelessWidget {
         BlocProvider.value(value: upcomingEventsCubit..getUpcomingEvents()),
       ],
       child: Scaffold(
-        backgroundColor: colorScheme.primary,
         drawer: const Drawer(),
         body: CustomScrollView(
           slivers: [
@@ -55,70 +54,67 @@ class HomeScreen extends StatelessWidget {
                     const LocationAndProfileAvatar()
                         .paddingSymmetric(vertical: 20.h)
                         .animate()
-                        .move(delay: 100.ms, duration: 1000.ms),
+                        .move(delay: 100.ms, duration: 2000.ms),
                     // HEADING
                     const HomeHeading().animate().fade(duration: 1000.ms),
                     // SEARCH BAR
                     const HomeSearchBar().animate().fadeIn().scale().move(
                           delay: 300.ms,
-                          duration: 1000.ms,
+                          duration: 2000.ms,
                         ),
                   ],
                 ),
               ),
             ])),
             SliverToBoxAdapter(
-              child: Container(
-                color: colorScheme.surface,
-                child: Column(
-                  children: [
-                    // YOU MIGHT LIKE SECTION
-                    ListHeading(
-                      title: 'You might like',
-                      onTap: () {},
-                    )
-                        .padding(bottom: 5)
-                        .animate()
-                        .animate()
-                        .fade(duration: 2000.ms),
-
-                    // EVENTS HORIZONTAL LIST
-                    BlocBuilder<RecommandedEventsCubit, RecommendedEventsState>(
-                      builder: (context, state) {
-                        if (state is RecommendedEventsLoading) {
-                          return const LoadingIndicator();
-                        } else if (state is RecommendedEventsError) {
-                          return ErrorWidget(state.error);
-                        } else if (state is RecommendedEventsSuccess) {
-                          return SizedBox(
-                            height: ScreenUtil().screenHeight / 3.5,
-                            child: ListView.builder(
-                                padding:
-                                    EdgeInsets.symmetric(horizontal: 20.sp),
-                                shrinkWrap: true,
-                                scrollDirection: Axis.horizontal,
-                                itemCount: state.events.length,
-                                itemBuilder: (context, index) {
-                                  return EventCard(
-                                    eventModel: state.events[index],
-                                  );
-                                }),
-                          );
-                        } else {
-                          return const LoadingIndicator();
-                        }
-                      },
-                    ).animate().fade(duration: 1000.ms),
-                    SizedBox(height: 10.h),
-
-                    // UPCOMING EVENTS HEADING
-                    ListHeading(title: 'Upcoming events', onTap: () {})
-                        .padding(bottom: 5)
-                        .animate()
-                        .animate()
-                        .fade(duration: 2000.ms),
-                  ],
-                ),
+              child: Column(
+                children: [
+                  // YOU MIGHT LIKE SECTION
+                  ListHeading(
+                    title: 'You might like',
+                    onTap: () {},
+                  )
+                      .padding(bottom: 5)
+                      .animate()
+                      .animate()
+                      .fade(duration: 2000.ms),
+              
+                  // EVENTS HORIZONTAL LIST
+                  BlocBuilder<RecommandedEventsCubit, RecommendedEventsState>(
+                    builder: (context, state) {
+                      if (state is RecommendedEventsLoading) {
+                        return const LoadingIndicator();
+                      } else if (state is RecommendedEventsError) {
+                        return ErrorWidget(state.error);
+                      } else if (state is RecommendedEventsSuccess) {
+                        return SizedBox(
+                          height: ScreenUtil().screenHeight / 3.5,
+                          child: ListView.builder(
+                              padding:
+                                  EdgeInsets.symmetric(horizontal: 20.sp),
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemCount: state.events.length,
+                              itemBuilder: (context, index) {
+                                return EventCard(
+                                  eventModel: state.events[index],
+                                );
+                              }),
+                        );
+                      } else {
+                        return const LoadingIndicator();
+                      }
+                    },
+                  ).animate().fade(duration: 2000.ms),
+                  SizedBox(height: 10.h),
+              
+                  // UPCOMING EVENTS HEADING
+                  ListHeading(title: 'Upcoming events', onTap: () {})
+                      .padding(bottom: 5)
+                      .animate()
+                      .animate()
+                      .fade(duration: 2000.ms),
+                ],
               ),
             ),
 
@@ -128,7 +124,6 @@ class HomeScreen extends StatelessWidget {
               childCount: upcomingEventData.length,
               (context, index) {
                 return Container(
-                  color: colorScheme.surface,
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: UpcomingEventCard(
                     eventModel: upcomingEventData[index],
@@ -142,7 +137,7 @@ class HomeScreen extends StatelessWidget {
             SliverToBoxAdapter(
               child: Container(
                 color: colorScheme.surface,
-                height: 100.h,
+                height: 50.h,
               ),
             ),
           ],

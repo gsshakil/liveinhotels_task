@@ -26,65 +26,11 @@ class EventCard extends StatelessWidget {
           Stack(
             children: [
               //bg image
-              SizedBox(
-                height: ScreenUtil().screenHeight / 5,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image.asset(
-                    eventModel.imagePath,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
+              _buildImage(),
               //date
-              Positioned(
-                left: 10,
-                top: 10,
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: const Color(0xFF88879B)),
-                  padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 3.h),
-                  child: Column(
-                    children: [
-                      Text(
-                        DateFormat(DateFormat.ABBR_MONTH)
-                            .format(eventModel.dateTime)
-                            .toUpperCase(),
-                        style: textTheme.labelSmall!.copyWith(
-                          color: colorScheme.surface,
-                        ),
-                      ),
-                      Text(
-                         DateFormat(DateFormat.DAY).format(eventModel.dateTime),
-                        style: textTheme.titleLarge!.bold().copyWith(
-                              color: colorScheme.surface,
-                            ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              _buildDate(textTheme, colorScheme),
               //tag
-              Positioned(
-                left: 10,
-                bottom: 10,
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: const Color(0xFFDCDECB)),
-                  padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 3.h),
-                  child: Row(
-                    children: [
-                      eventModel.tagIcon.padding(right: 5),
-                      Text(
-                        eventModel.tag,
-                        style: textTheme.labelSmall,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              _buildTag(textTheme),
             ],
           ).padding(bottom: 10.h),
           Text(
@@ -102,6 +48,72 @@ class EventCard extends StatelessWidget {
           ),
         ],
       ).padding(right: 15.sp),
+    );
+  }
+
+  SizedBox _buildImage() {
+    return SizedBox(
+      height: ScreenUtil().screenHeight / 5,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Image.asset(
+          eventModel.imagePath,
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
+  Positioned _buildDate(TextTheme textTheme, ColorScheme colorScheme) {
+    return Positioned(
+      left: 10,
+      top: 10,
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            color: const Color(0xFF88879B)),
+        padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 3.h),
+        child: Column(
+          children: [
+            Text(
+              DateFormat(DateFormat.ABBR_MONTH)
+                  .format(eventModel.dateTime)
+                  .toUpperCase(),
+              style: textTheme.labelSmall!.copyWith(
+                color: colorScheme.surface,
+              ),
+            ),
+            Text(
+              DateFormat(DateFormat.DAY).format(eventModel.dateTime),
+              style: textTheme.titleLarge!.bold().copyWith(
+                    color: colorScheme.surface,
+                  ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Positioned _buildTag(TextTheme textTheme) {
+    return Positioned(
+      left: 10,
+      bottom: 10,
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            color: const Color(0xFFDCDECB)),
+        padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 3.h),
+        child: Row(
+          children: [
+            eventModel.tagIcon.padding(right: 5),
+            Text(
+              eventModel.tag,
+              style: textTheme.labelSmall!.copyWith(color: Colors.black),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

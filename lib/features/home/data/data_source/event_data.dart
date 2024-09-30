@@ -11,6 +11,7 @@ final eventData = [
     tagIcon: const Icon(
       Icons.workspaces_sharp,
       size: 18,
+      color: Colors.black,
     ),
     imagePath: Assets.event1,
     eventStartTime: '10:00',
@@ -24,6 +25,7 @@ final eventData = [
     tagIcon: const Icon(
       Icons.filter_frames_outlined,
       size: 18,
+      color: Colors.black,
     ),
     imagePath: Assets.event2,
     eventStartTime: '7:00',
@@ -37,6 +39,7 @@ final eventData = [
     tagIcon: const Icon(
       Icons.workspaces_sharp,
       size: 18,
+      color: Colors.black,
     ),
     imagePath: Assets.event3,
     eventStartTime: '10:00',
@@ -50,6 +53,7 @@ final eventData = [
     tagIcon: const Icon(
       Icons.filter_frames_outlined,
       size: 18,
+      color: Colors.black,
     ),
     imagePath: Assets.event4,
     eventStartTime: '7:00',
