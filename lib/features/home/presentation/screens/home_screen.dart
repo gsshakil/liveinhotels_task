@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:liveinhotels_task/core/extensions/widget_extensions.dart';
 import 'package:liveinhotels_task/features/home/data/data_source/event_data.dart';
@@ -7,7 +8,7 @@ import 'package:liveinhotels_task/features/home/presentation/widgets/event_card.
 import 'package:liveinhotels_task/features/home/presentation/widgets/home_heading.dart';
 import 'package:liveinhotels_task/features/home/presentation/widgets/home_search_bar.dart';
 import 'package:liveinhotels_task/features/home/presentation/widgets/list_heading.dart';
-import 'package:liveinhotels_task/features/home/presentation/widgets/location_and_profile_avater.dart';
+import 'package:liveinhotels_task/features/home/presentation/widgets/location_and_profile_avatar.dart';
 import 'package:liveinhotels_task/features/home/presentation/widgets/upcoming_event_card.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -18,6 +19,8 @@ class HomeScreen extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
+      backgroundColor: colorScheme.primary,
+      drawer: const Drawer(),
       body: CustomScrollView(
         slivers: [
           SliverList(
@@ -36,51 +39,72 @@ class HomeScreen extends StatelessWidget {
               )),
               child: Column(
                 children: [
-                  SizedBox(height: 30.h),
-                  //location and profile pic button
+                  SizedBox(height: 50.h),
+                  // LOCATION & PROFILE PICTURE
                   const LocationAndProfileAvatar()
-                      .paddingSymmetric(vertical: 20.h),
-                  // headding
-                  const HomeHeading(),
-                  //Search Bar
-                  const HomeSearchBar(),
+                      .paddingSymmetric(vertical: 20.h)
+                      .animate()
+                      .move(delay: 100.ms, duration: 1000.ms),
+                  // HEADING
+                  const HomeHeading().animate().fade(duration: 1000.ms),
+                  // SEARCH BAR
+                  const HomeSearchBar().animate().fadeIn().scale().move(
+                        delay: 300.ms,
+                        duration: 1000.ms,
+                      ),
                 ],
               ),
             ),
           ])),
           SliverToBoxAdapter(
-            child: Column(
-              children: [
-                //You might like section
-                ListHeading(title: 'You might like', onTap: () {})
-                    .padding(bottom: 5),
-
-                //events horizontal list
-                SizedBox(
-                  height: ScreenUtil().screenHeight / 3.5,
-                  child: ListView.builder(
-                      padding: EdgeInsets.symmetric(horizontal: 20.sp),
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: eventData.length,
-                      itemBuilder: (context, index) {
-                        return EventCard(
-                          eventModel: eventData[index],
-                        );
-                      }),
-                ),
-                SizedBox(height: 10.h),
-                // Upcoming Events
-                ListHeading(title: 'Upcoming events', onTap: () {})
-                    .padding(bottom: 5),
-              ],
+            child: Container(
+              color: colorScheme.surface,
+              child: Column(
+                children: [
+                  // YOU MIGHT LIKE SECTION
+                  ListHeading(
+                    title: 'You might like',
+                    onTap: () {},
+                  )
+                      .padding(bottom: 5)
+                      .animate()
+                      .animate()
+                      .fade(duration: 2000.ms),
+              
+                  // EVENTS HORIZONTAL LIST
+                  SizedBox(
+                    height: ScreenUtil().screenHeight / 3.5,
+                    child: ListView.builder(
+                        padding: EdgeInsets.symmetric(horizontal: 20.sp),
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: eventData.length,
+                        itemBuilder: (context, index) {
+                          return EventCard(
+                            eventModel: eventData[index],
+                          );
+                        }),
+                  ).animate().fade(duration: 1000.ms),
+                  SizedBox(height: 10.h),
+              
+                  // UPCOMING EVENTS HEADING
+                  ListHeading(title: 'Upcoming events', onTap: () {})
+                      .padding(bottom: 5)
+                      .animate()
+                      .animate()
+                      .fade(duration:2000.ms),
+                ],
+              ),
             ),
           ),
+
+          // UPCOMING EVENTS LIST
           SliverList(
               delegate: SliverChildBuilderDelegate(
             childCount: upcomingEventData.length,
             (context, index) {
-              return Padding(
+              return Container(
+                color: colorScheme.surface,
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: UpcomingEventCard(
                   eventModel: upcomingEventData[index],
@@ -89,8 +113,11 @@ class HomeScreen extends StatelessWidget {
               );
             },
           )),
+
+          // EXTRA BOTTOM SPACE
           SliverToBoxAdapter(
-            child: SizedBox(
+            child: Container(
+              color: colorScheme.surface,
               height: 100.h,
             ),
           ),

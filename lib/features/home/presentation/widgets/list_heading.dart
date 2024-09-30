@@ -39,7 +39,7 @@ class ListHeading extends StatelessWidget {
               )),
               child: Text(
                 'See All',
-                style: textTheme.labelLarge!.copyWith(
+                style: textTheme.labelMedium!.copyWith(
                   color: colorScheme.onSurface.withOpacity(0.7),
                 ),
               ),

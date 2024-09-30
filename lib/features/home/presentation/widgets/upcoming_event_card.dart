@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:liveinhotels_task/core/assets.dart';
-import 'package:liveinhotels_task/core/extensions/widget_extensions.dart';
 import 'package:liveinhotels_task/core/extensions/text_style_extensions.dart';
+import 'package:liveinhotels_task/core/extensions/widget_extensions.dart';
 import 'package:liveinhotels_task/features/home/data/models/event_model.dart';
 
 class UpcomingEventCard extends StatelessWidget {

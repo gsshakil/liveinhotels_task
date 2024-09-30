@@ -12,24 +12,31 @@ class HomeLocationSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Text(
-              'New York',
-              style: textTheme.labelLarge?.bold(),
-            ),
-            const Icon(Icons.keyboard_arrow_down)
-          ],
-        ),
-        Text(
-          'within 20 miles',
-          style: textTheme.labelMedium!.copyWith(
-              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7)),
-        ),
-      ],
+    return GestureDetector(
+      onTap: (){
+        showModalBottomSheet(context: context, builder: (builder){
+          return Container();
+        });
+      },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text(
+                'New York',
+                style: textTheme.labelLarge?.bold(),
+              ),
+              const Icon(Icons.keyboard_arrow_down)
+            ],
+          ),
+          Text(
+            'within 20 miles',
+            style: textTheme.labelMedium!.copyWith(
+                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7)),
+          ),
+        ],
+      ),
     );
   }
 }
