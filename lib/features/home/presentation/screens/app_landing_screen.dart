@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:liveinhotels_task/features/home/presentation/screens/home_screen.dart';
 import 'package:liveinhotels_task/core/value_notifiers.dart';
-import 'package:liveinhotels_task/features/inbox/presentation/screens/inbox_screeen.dart';
+import 'package:liveinhotels_task/features/inbox/presentation/screens/inbox_screen.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 
 class AppLandingScreen extends StatelessWidget {

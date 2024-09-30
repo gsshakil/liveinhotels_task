@@ -1,6 +1,6 @@
 # liveinhotels_task
 
-A new Flutter project.
+Live in Hotels - Task.
 
 ## Getting Started
 
